@@ -23,7 +23,7 @@ jobs:
       run: |
         source venv/bin/activate
         python -m pip install --upgrade pip
-        pip install -r requirements/requirements.txt  # Install dependencies from requirements.txt in the 'requirements' folder
+        pip install -r requirements/local.txt  # Install dependencies from requirements.txt in the 'requirements' folder
         deactivate  # Deactivate the virtual environment
       working-directory: ${{ github.workspace }}
 
