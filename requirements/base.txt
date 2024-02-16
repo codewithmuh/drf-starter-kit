@@ -10,3 +10,4 @@ pylint==3.0.3
 pytz==2024.1
 sqlparse==0.4.4
 tomlkit==0.12.3
+
