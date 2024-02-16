@@ -1,0 +1,35 @@
+name: Python Pylint Check
+
+on: [push]
+
+jobs:
+  pylint-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'  # Choose the desired Python version
+
+    - name: Create virtual environment
+      run: python -m venv venv
+      working-directory: ${{ github.workspace }}
+
+    - name: Activate virtual environment and install dependencies
+      run: |
+        source venv/bin/activate
+        python -m pip install --upgrade pip
+        pip install -r requirements/requirements.txt  # Install dependencies from requirements.txt in the 'requirements' folder
+        deactivate  # Deactivate the virtual environment
+      working-directory: ${{ github.workspace }}
+
+    - name: Analyze code with Pylint
+      run: |
+        source venv/bin/activate
+        pylint $(git ls-files '*.py')
+        deactivate
+      working-directory: ${{ github.workspace }}
