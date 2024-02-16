@@ -1,6 +1,10 @@
 name: Python Pylint Check
 
-on: [push]
+on:
+  push:
+    branches:
+      - local  # Adjust the branch name as needed
+
 
 jobs:
   pylint-check:
